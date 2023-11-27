@@ -1,0 +1,571 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/pr.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}?{% now 'U' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}?{% now 'U' %}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- chart js start  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- chart js end -->
+    <title>adminconsole</title>
+</head>
+
+<body>
+    <div class="main-dis">
+        <div class="main-con ">
+            <div class="nav-con " onclick="navcon()">
+                <nav class="px-2">
+                    <div class="container-fluid p-0 m-0">
+                        <div class="navlistlogo">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="{% static 'images/nav-icon/small-icon.png' %}" alt="small_Icon"
+                                        class="small-logo">
+                                    <img src="{% static 'images/close.png' %}" alt="menu_Icon" class="close-icons">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <img src="{% static 'images/nav-icon/main-log.svg' %}" alt="small_Icon"
+                                    class="main-logo">
+                            </div>
+                        </div>
+                        <div id="userprofilelist">
+                            <div class="user-profiles">
+                                <div class="user-img">
+                                    {%if profile == "NULL"%}
+                                    <img src="{% static 'images/user-profile.svg' %}" alt="user-profile">
+                                    {%else%}
+                                    <img src="{{profile}}" alt="user-profile">
+                                    {%endif%}
+                                </div>
+                                <div class="emply-id">
+                                    <span>{{ name }}</span><br>
+                                    <span>{% if dep == "WEB" %}
+                                        <p>Web Developer</p>
+                                        {% elif dep == "APP" %}
+                                        <p>App developer</p>
+                                        {% elif dep == "MEDIA" %}
+                                        <p>Graphic designer</p>
+                                        {% elif dep == "PR" %}
+                                        <p>PR</p>
+                                        {% elif dep == "RND" %}
+                                        <p>R&D</p>
+                                        {% else %}
+                                        <p>Admin</p>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-profile">
+                            <li class="user-visual">
+                                <div class="left-nav-list"> <img src="{% static 'images/menu.png' %}" alt="menu_Icon"
+                                        class="menu-icons"></div>
+                                <div class="right-nav-list">
+                                </div>
+                            </li>
+
+                        </div>
+                        <ul id="nav-main-con">
+                            <li class="navlistmenu  navlistmenu-active" onclick="location.href='/'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/dashboard.svg' %}" alt="dashboard_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Home</h5>
+                                </div>
+                            </li>
+                            {% if general %}
+                            <li class="navlistmenu " onclick="location.href='/leave_form'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/forms-icon.svg' %}" alt="dashboard_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Leave Form</h5>
+                                </div>
+                            </li>
+                            <li class="navlistmenu" onclick="location.href='/late_form'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/late-icons.png' %}" alt="dashboard_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Late Form</h5>
+                                </div>
+                            </li>
+                            <li class="navlistmenu" onclick="location.href='/suggestion'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/suggestion.png' %}" alt="dashboard_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Suggestion</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            <!-- ===========tl's============================ -->
+                            {% if approvalpage %}
+                            <li class="navlistmenu" onclick="location.href='/approval'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/approval.png' %}" alt="dashboard_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Approval</h5>
+                                </div>
+                            </li>
+
+                            {% endif %}
+
+                            {% if rnd %}
+
+                            <li class="navlistmenu " onclick="location.href='/inprocess'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/inprocess.svg' %}" alt="inprocess_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>In Process</h5>
+                                </div>
+                            </li>
+                            <li class="navlistmenu " onclick="location.href='/create'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/create-product.svg' %}"
+                                            alt="inprocess_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Create Product</h5>
+                                </div>
+                            </li>
+
+                            {% endif %}
+
+                            {% if account %}
+                            <li class="navlistmenu " onclick="location.href='/financial'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/financial-icon.svg' %}"
+                                            alt="dashboard_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Financial</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if createlead %}
+                            <li class="navlistmenu " onclick="location.href='/create_lead'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/create_lead.svg' %}" alt="create_lead">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Create Lead</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if customerdetails %}
+                            <li class="navlistmenu " onclick="location.href='/customer_details'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/customer-icon.svg' %}"
+                                            alt="dashboard_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Customer Details</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if quotation %}
+                            <li class="navlistmenu" onclick="location.href='/quotation'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/invoice.png' %}" alt="quottaion_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Quotation</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if inventory %}
+                            <li class="navlistmenu" onclick="location.href='/inventorymanagement'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/invoice.png' %}" alt="inventory_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Inventory</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if createstaff %}
+                            <li class="navlistmenu" onclick="location.href='/createstaff'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/create-staff.svg' %}"
+                                            alt="createstaff_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Create Staff</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if viewworkmanager %}
+                            <li class="navlistmenu" onclick="location.href='/viewworkmanager'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/viewworkmanager.svg' %}"
+                                            alt="createstaff_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>View Workmanager</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if viewsuggestion %}
+                            <li class="navlistmenu" onclick="location.href='/viewsuggestion'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/viewsuggestion.svg' %}"
+                                            alt="userdata_Icon">
+                                        <span>{{suggestionNotification}}</span>
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>View Suggestion</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if userdata %}
+                            <li class="navlistmenu" onclick="location.href='/userdata'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/userdata.svg' %}" alt="userdata_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>User Data</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {%if dep == "ADMIN"%}
+                            <li class="navlistmenu" onclick="location.href='/staffaccess'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/userdata.svg' %}" alt="userdata_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Staff Access</h5>
+                                </div>
+                            </li>
+                            {%endif%}
+
+                            {% if prdashboard %}
+                            <li class="navlistmenu " onclick="location.href='/prdashboard'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/prdashboard.svg' %}" alt="userdata_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>PR Dashboard</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+                            {% if installationadd %}
+                            <li class="navlistmenu " onclick="location.href='/installationadd'">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/prdashboard.svg' %}" alt="userdata_Icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Installation Add</h5>
+                                </div>
+                            </li>
+                            {% endif %}
+
+
+                            <!-- =========================== -->
+
+                        </ul>
+                        <div class="logout" onclick="location.href='/logout/'">
+                            <li class="navlistmenu logout-nav-list">
+                                <div class="left-nav-list">
+                                    <div class="menu-icon">
+                                        <img src="{% static 'images/nav-icon/logout-icon.svg' %}" alt="dashboard_Icon"
+                                            class="logout-icon">
+                                    </div>
+                                </div>
+                                <div class="right-nav-list">
+                                    <h5>Logout</h5>
+                                </div>
+                            </li>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="right-con " id="rightCon" onclick="rightcon()">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="coi-md-12">
+                            <div class="onyx-con">
+                                <div class="onyx-li">
+                                    <div class="onyx-title">
+                                        <h2>ONYX Announcement</h2>
+                                    </div>
+                                    <div class="onyx-inp">
+                                        <div class="onyx-inp-con">
+                                            <input type="text" name="" id=""
+                                                placeholder="Type Here like hey  onyx dim the lights">
+                                            <div class="send-btns">
+                                                <div class="mic"><img src="{% static 'images/mic.svg' %}" alt="mic"
+                                                        class="img-fluid"></div>
+                                                <div class="sendBtn"><img src="{% static 'images/send-icon.svg' %}"
+                                                        alt="send-icon" class="img-fluid"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="notification-con">
+                                <div class="lead-dashboard">
+                                    <div class="lead-dashboardbox">
+                                        <h3>Today
+                                            Lead</h3>
+                                        <h2>{{totallead}}</h2>
+                                    </div>
+                                    <div class="lead-dashboardbox">
+                                        <h3>Today
+                                            Sale</h3>
+                                        <h2>12</h2>
+                                    </div>
+                                    <div class="lead-dashboardbox">
+                                        <h3>Today
+                                            Visit</h3>
+                                        <h2>45</h2>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="leavebalance-con p-2" onclick="location.href='/financial'">
+                                <h4>Expenses</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="leave-chart">
+                                            <canvas id="myChart12" width="100" height="100"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="">
+                                            <div class=" d-flex align-items-center mb-1">
+                                                <span class="circl me-1 sick-circl"></span>
+                                                <span class="leave-text">Salary</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="">
+                                            <div class=" d-flex align-items-center mb-1">
+                                                <span class="circl me-1 casual-circl"></span>
+                                                <span class="leave-text">Equipment Purches</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="">
+                                            <div class=" d-flex align-items-center mb-1">
+                                                <span class="circl me-1 casual-circl"></span>
+                                                <span class="leave-text">Visit Expenses</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="">
+                                            <div class=" d-flex align-items-center">
+                                                <span class="circl me-1 casual-circl"></span>
+                                                <span class="leave-text">EB bills</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="stock-details p-2">
+                                <h4>Stocks</h4>
+                                <div class="carousel-container2">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="leave-table-head">
+                                                <th>Name</th>
+                                                <th>No of stocks</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            {%for x in inventoryall%}
+                                            <tr class="table-body-li my-3">
+                                                <td>{{x.name}}</td>
+                                                <td>{{x.stock}}</td>
+                                            </tr>
+                                            {%endfor%}
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="quotation-box-dashboard" onclick="location.href='/attendanced'">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h4> Attendance</h4>
+                                    <!-- <h2 class="install-attendance"><span><input type="date"></span><span>12-Sep</span></h2> -->
+                                </div>
+                                <div class="quot-chart">
+                                    <canvas id="myChart4"></canvas>
+                                </div>
+
+                                <div class="bottom-quot-list">
+                                    <div class="d-flex align-items-center justify-content-between mx-3">
+                                        <div class="d-flex align-items-center">
+                                            <p class="circl-quot quots-cir"></p>
+                                            <h5>Present</h5>
+                                        </div>
+                                        <div class="quot-count">
+                                            <h5>{{stafftotalpresent}}</h5>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mx-3">
+                                        <div class="d-flex align-items-center">
+                                            <p class="circl-quot inv-circ"></p>
+                                            <h5>Absent</h5>
+                                        </div>
+                                        <div class="quot-count">
+                                            <h5>{{stafftotalabsent}}</h5>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notfound">
+        <div class="nopage">
+            <h2>404</h2>
+            <h2>Not Found</h2>
+        </div>
+    </div>
+    <!-- bootstrap js -->
+    <script src="{% static 'js/bootstrap.bundle.js' %}?{% now 'U' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}?{% now 'U' %}"></script>
+    <!-- js script  start -->
+    <script src="{% static 'js/main.js' %}?{% now 'U' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- js script  end -->
+
+    <script>
+        // break
+        var xValues = [];
+        var yValues = [{{ stafftotalpresent }}, {{ stafftotalabsent }}];
+        var barColors = [
+            "#7FA9FB",
+            "#266386",
+            // "#a78f0d",
+        ];
+        new Chart("myChart4", {
+            type: "doughnut",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues,
+                    borderColor: 'transparent'
+                }]
+            },
+            options: {
+                cutoutPercentage: 80,
+                title: {
+                    display: true,
+                    text: ""
+                }
+            }
+        });
+        function animateTable2() {
+            const $table2 = $('.carousel-container2 table');
+            const $tableBody2 = $table2.find('tbody');
+            const rowHeight2 = $table2.find('tr:first').outerHeight();
+
+            function moveRows2() {
+                $tableBody2.animate({ marginTop: -rowHeight2 }, 1000, 'linear', function () {
+
+                    $tableBody2.find('tr:first').appendTo($tableBody2);
+                    $tableBody2.css('marginTop', 0);
+                });
+            }
+
+            setInterval(moveRows2, 5000);
+        }
+
+        $(document).ready(function () {
+            animateTable2();
+        });
+    </script>
+</body>
+
+</html>

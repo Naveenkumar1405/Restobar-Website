@@ -1,0 +1,622 @@
+
+.loginform-con{
+    /* background-color: #fff; */
+    border-radius: 10px;
+    padding: 20px 10px;
+    margin-top: 20%;
+    text-align: center;
+}
+
+input {
+    background: #eee;
+    padding: 12px 15px;
+    margin: 8px 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin: 15px;
+}
+
+.sign-btn {
+    background-color: #FBD87F;
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+    outline-offset: none;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: abzee-regular;
+}
+
+.forgot-btn{
+    text-align: end !important;
+
+}
+
+
+
+
+
+/* CMO PRODUCT PAGE */
+
+.product-nav {
+    background-color: #fff;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.active-product {
+    background-color: #FBD87F;
+}
+
+.calculate-cmo {
+    cursor: pointer;
+}
+
+/* .Calculate-cmo {
+    background-color: #FBD87F;
+    border-radius: 5px;
+    height: 40px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: abzee-regular;
+} */
+
+.product-table {
+
+    border-radius: 5px;
+    /* height: 50px; */
+    /* display: flex; */
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
+}
+
+.product-table-head {
+    background-color: #FBD87F;
+    border: none;
+    outline: none;
+    font-family: abzee-regular;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: none
+}
+
+.product-details {
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-bottom: none
+}
+
+.product-details {
+    align-items: center;
+    text-align: center;
+}
+
+.product-details td {
+    font-weight: 600;
+}
+
+.calculate-table form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* padding: 0 50px; */
+    text-align: center;
+
+}
+
+.calculate-table input {
+    background: #eee;
+    padding: 12px 15px;
+    /* margin: 8px 15px; */
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin: 15px;
+}
+
+
+.addpoint-table form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* padding: 0 50px; */
+    text-align: center;
+    height: 100%;
+}
+
+.addpoint-table input {
+    background: #fff;
+    padding: 8px 11px;
+    border: 1px solid #000;
+    width: 90%;
+
+    border: 2px solid #918f8f;
+    outline: none;
+    margin: 8px;
+    border-radius: 15px;
+    background: none;
+}
+
+
+.cal-point form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 20vh;
+}
+
+.cal-point input {
+    background: #fff;
+    padding: 8px 11px;
+    border: 1px solid #000;
+    width: 90%;
+    border: 2px solid #918f8f;
+    outline: none;
+    margin: 8px auto;
+    border-radius: 15px;
+    background: none;
+
+}
+
+
+.product {
+    height: 80vh;
+    width: 80% !important;
+}
+
+.cmo-h {
+    text-align: center !important;
+    transform: translate(53%, 12px);
+}
+
+.calculate {
+    height: 60vh;
+    width: 80%;
+}
+
+.primary-button-update {
+    background-color: #FBD87F !important;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    outline-offset: none;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: abzee-regular;
+}
+
+
+
+
+
+.cmo-input {
+    width: 40%;
+    height: 30px;
+    /* border: 1px solid black; */
+    outline: none;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 6px;
+    font-weight: 13px;
+}
+
+.adminpoints-nav {
+    background-color: #FBE6B2;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+#admin-points {
+    display: none;
+}
+
+
+
+
+.cmo-input {
+    width: 40%;
+    height: 30px;
+    /* border: 1px solid black; */
+    outline: none;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 6px;
+    font-weight: 13px;
+}
+
+.adminpoints-nav {
+    background-color: #FBE6B2;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+#admin-points {
+    display: none;
+}
+
+.installation-pending h5 {
+    text-align: left;
+}
+
+.installation-pending input {
+    margin: 10px;
+    outline: none;
+    border: 2px solid #282828;
+    border-radius: 5px;
+    width: 70%;
+    height: 50px;
+    padding: 12px;
+    font-size: 18px;
+
+}
+
+
+.installation-pending {
+    flex-direction: column;
+    width: 30%;
+    margin: 5px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.installation-pending button {
+    width: 32%;
+    height: 42px;
+    text-align: center;
+
+}
+
+.up-cmo {
+    margin: 0;
+}
+
+.li-inventry {
+    padding: 10px;
+    margin: 0;
+}
+
+.li-inventry:hover,
+.active-inv {
+    background-color: #FBD87F !important;
+    border-radius: 5px;
+}
+
+
+.view-date:hover {
+    background-color: #fff;
+}
+
+#prper-nav {
+    background: none;
+}
+
+#target-Btn,
+#pending-Btn {
+    display: none;
+}
+
+#prdashboard {
+    display: none;
+}
+
+#staticBackdrop {
+    display: none;
+}
+
+/* .cmo-nav h5 {
+    /* font-size: 20px;
+    font-weight: 600;
+    padding: 8px 5px;
+    margin: 3px 0px;
+    border-radius: 5px;
+} */
+.add-name input {
+    width: 40%;
+    height: 30px;
+    /* border: 1px solid black; */
+    outline: none;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 6px;
+    font-weight: 13px;
+
+}
+
+#choose-the-name {
+    display: none;
+}
+
+#update-table {
+    display: none;
+}
+
+.inventory-ro td {
+    display: flex;
+    align-items: center;
+}
+
+
+.view-form {
+    transform: translate(0, 0);
+    height: 40px;
+    position: relative;
+}
+
+.view-form input {
+    background-color: #fff;
+    height: 40px;
+}
+
+.workdone-view {
+    background-color: hsl(43, 90%, 84%);
+    border-radius: 5px;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.workdone-form {
+    transform: translate(10px, 10px);
+
+}
+
+.workdone-form input {
+    background-color: hsl(43, 90%, 84%);
+}
+
+.workdone-table {
+    background-color: #fff;
+    border-radius: 5px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+/* .staff-name {
+    text-align: center;
+
+}
+
+.staff-name-con {
+    width: 40%;
+    height: 60px;
+    border: 2px solid #918f8f;
+    outline: none;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: abzee-regular;
+
+} */
+.staff-name-con {
+    border: none;
+    outline: none;
+
+}
+
+.date-input-form input {
+    width: 30%;
+    height: 40%;
+    border: 2px solid #918f8f;
+    border-radius: 10px;
+    background-color: hsl(43, 90%, 84%);
+}
+
+.select-staff-date h3 {
+    transform: translate(12px, 69px);
+}
+
+.allwork-done button {
+    width: 27%;
+    height: 50px;
+    border: 2px solid #918f8f;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: abzee-regular;
+    border-radius: 10px;
+    background-color: hsl(43, 90%, 84%);
+}
+
+.date-input-form {
+    transform: translate(0, 0);
+}
+
+.allwork-done button {
+    transform: translate(0, 70px);
+}
+
+
+.workdone-table-head {
+    background-color: #FBD87F;
+    border: none;
+    outline: none;
+    font-family: abzee-regular;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: none
+}
+
+.workdone-details {
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-bottom: none
+}
+
+.workdone-btn {
+    border: none;
+    outline: none;
+    pad: 10px;
+    background: none;
+}
+
+.workdone-btn h5 {
+    font-size: 20px;
+    font-weight: 600;
+
+}
+
+#staff-details-workdone {
+    display: none;
+}
+
+#workdone-view {
+    display: none;
+}
+
+.workdone-staff {
+    width: 20%;
+    height: 35px;
+    background: #fff;
+    margin: 8px;
+    font-family: abzee-regular;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.workdone-staff button {
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+
+.form-inp-cons {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    border: 1px solid #282828;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px auto;
+}
+
+.form-inp-cons input {
+    width: 90%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+    padding: 0px 10px;
+}
+
+.depart-btn {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.workdone-nav {
+    background-color: #fff;
+    border-radius: 5px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    padding: 10px;
+
+}
+
+/* CMO PRODUCT PAGE */
+
+.workdone-nav-below {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.workdone-nav-below input {
+    width: 100px;
+    padding: 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.workdone-nav-below input:hover {
+    background-color: #FBD87F;
+
+    /* padding: 10px; */
+}
+
+.form-btn input {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.dropdown-menu {
+    height: 50vh;
+    width: 200px;
+    overflow-y: scroll;
+}
+
+.dropdown-menu li {
+    padding: 10px 0px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.main-workdoneprint {
+    display: none;
+}

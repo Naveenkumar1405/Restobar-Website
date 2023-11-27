@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/pr.css">
+    <link rel="stylesheet" href="../static/css/pr.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="main-dis">
+    <div class="main-con">
+        <div class="nav-con " onclick="navcon()">
+            <nav class="px-2">
+                <div class="container-fluid p-0 m-0">
+                    <div class="navlistlogo">
+                        <div class="left-nav-list">
+                            <div class="menu-icon">
+                                <img src="../static/images/nav-icon/small-icon.png" alt="small_Icon"
+                                    class="small-logo">
+                                <img src="../static/images/close.png' %}" alt="menu_Icon" class="close-icons">
+                            </div>
+                        </div>
+                        <div class="right-nav-list">
+                            <img src="../static/images/nav-icon/main-log.svg" alt="small_Icon" class="main-logo">
+                        </div>
+                    </div>
+                    <div id="userprofilelist">
+                        <div class="user-profiles">
+                            <div class="user-img">
+                                {%if profile == "NULL"%}
+                                <img src="../static/images/user-profile.svg" alt="user-profile">
+                                {%else%}
+                                <img src="{{profile}}" alt="user-profile">
+                                {%endif%}
+                            </div>
+                            <div class="emply-id">
+                                <span>{{ name }}</span><br>
+                                <span>{% if dep == "WEB" %}
+                                    <p>Web Developer</p>
+                                    {% elif dep == "APP" %}
+                                    <p>App developer</p>
+                                    {% elif dep == "MEDIA" %}
+                                    <p>Graphic designer</p>
+                                    {% elif dep == "PR" %}
+                                    <p>PR</p>
+                                    {% elif dep == "RND" %}
+                                    <p>R&D</p>
+                                    {% else %}
+                                    <p>Admin</p>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <li class="user-visual">
+                            <div class="left-nav-list"> <img src="../static/images/menu.png" alt="menu_Icon"
+                                    class="menu-icons"></div>
+                            <div class="right-nav-list">
+                               
+                            </div>
+                        </li>
+
+                    </div>
+                    <ul id="nav-main-con">
+                        <li class="navlistmenu navlistmenu-active" onclick="location.href='/'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/dashboard.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Home</h5>
+                            </div>
+                        </li>
+                        {% if general %}
+                        <li class="navlistmenu " onclick="location.href='/leave_form'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/forms-icon.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Leave Form</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu" onclick="location.href='/late_form'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/late-icons.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Late Form</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu" onclick="location.href='/suggestion'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/suggestion.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Suggestion</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if approvalpage %}
+                        <li class="navlistmenu" onclick="location.href='/approval'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/approval.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Approval</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if rnd %}
+                        <li class="navlistmenu " onclick="location.href='/inprocess'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/inprocess.svg' %}" alt="inprocess_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>In Process</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu " onclick="location.href='/create'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/create-product.svg" alt="inprocess_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Create Product</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if account %}
+                        <li class="navlistmenu " onclick="location.href='/financial'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/financial-icon.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Financial</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if createlead %}
+                        <li class="navlistmenu " onclick="location.href='/create_lead'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/create_lead.svg" alt="create_lead">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Create Lead</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if customerdetails %}
+                        <li class="navlistmenu " onclick="location.href='/customer_details'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/customer-icon.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Customer Details</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if quotation %}
+                        <li class="navlistmenu" onclick="location.href='/quotation'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/invoice.png" alt="quottaion_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Quotation</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if inventory %}
+                        <li class="navlistmenu" onclick="location.href='/inventorymanagement'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/invoice.png" alt="inventory_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Inventory</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if createstaff %}
+                        <li class="navlistmenu" onclick="location.href='/createstaff'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/create-staff.svg" alt="createstaff_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Create Staff</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if viewworkmanager %}
+                        <li class="navlistmenu" onclick="location.href='/viewworkmanager'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/viewworkmanager.svg"
+                                        alt="createstaff_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>View Workmanager</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if viewsuggestion %}
+                        <li class="navlistmenu" onclick="location.href='/viewsuggestion'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/viewsuggestion.svg" alt="userdata_Icon">
+                                    <span class="suggestionpop">{{suggestionNotification}}</span>
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>View Suggestion</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if userdata %}
+                        <li class="navlistmenu" onclick="location.href='/userdata'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/userdata.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>User Data</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {%if dep == "ADMIN"%}
+                        <li class="navlistmenu" onclick="location.href='/staffaccess'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/userdata.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Staff Access</h5>
+                            </div>
+                        </li>
+                        {%endif%}
+                        {% if prdashboard %}
+                        <li class="navlistmenu " onclick="location.href='/prdashboard'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/prdashboard.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>PR Dashboard</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if installationadd %}
+                        <li class="navlistmenu " onclick="location.href='/installationadd'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/prdashboard.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Installation Add</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                    <div class="logout" onclick="location.href='/logout/'">
+                        <li class="navlistmenu">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/logout-icon.svg" alt="dashboard_Icon"
+                                        class="logout-icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Logout</h5>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="right-con " id="rightCon" onclick="rightcon()">
+            <div class="container-fluid">
+                <div class="product-nav cmo-nav my-3">
+                    <h5 class=" depart-btn   li-inventry" onclick="location.href='/workmanagerTl'" id="select-nav">Select
+                        Department
+                    </h5>
+                    <h5 class=" depart-btn   li-inventry" onclick="location.href='/workdonedetails'" id="select-nav">Select
+                        Staff
+                    </h5>
+                </div>
+                <form  action="">
+                    <div class="workdone-nav-below">
+                    <div class="form-inp-con">
+                        <input type="date" name="" style='width: 300px;' id="">
+                    </div>
+                    <div class="form-btn itbtn">
+                        <input type="submit" name="" value="IT" id="">
+                    </div>
+                   <div class="form-btn prbtn">
+                    <input type="submit" name="" value="PR" id="">
+                   </div>
+                   <div class="form-btn rndbtn">
+                    <input type="submit" name=""  value="RND" id="">
+                   </div>
+                </div>
+                  </form>
+            </div>
+            <div class="main-workdoneprint">
+                <center><h2>WORKDONE of {{dep}} Department</h2></center>
+                <div class="table-top">
+                  <span>{{day}}</span>
+                  <span>Completed Workdone</span>
+                  <span>{{date}}</span>
+                </div>
+                <div class="t">
+                  {% if not firstTable %}
+                  <center><h2>Staff's Didn't submit yet!</h2></center>
+                  {% else %}
+                  <table class="t1" id="myTable">
+                    <tr>
+                      <th>Name</th>
+                      <th>From</th>
+                      <th>To</th>
+                      <th width="50%">Work</th>
+                      <th>Hours</th>
+                      <th>Percent</th>
+                    </tr>
+                    <tr>
+                      {% for x in firstTable %}
+                      <td>{{x.name}}</td>
+                      <td>
+                        {% if x.from|slice:"0:2" > "12" %}
+                        {{x.from|slice:"0:2"|add:"-12"}}{{x.from|slice:"2:"}} PM
+                        {% elif x.from|slice:"0:2" == "12" %}
+                        {{x.from}} PM
+                        {% else %}
+                        {{x.from}} AM
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if x.to|slice:"0:2" > "12" %}
+                        {{x.to|slice:"0:2"|add:"-12"}}{{x.to|slice:"2:"}} PM
+                        {% elif x.to|slice:"0:2" == "12" %}
+                        {{x.to}} PM
+                        {% else %}
+                        {{x.to}} AM
+                        {% endif %}
+                      </td>
+                      <td>{{x.workDone}}</td>
+                      <td>{{x.time_in_hours}}</td>
+                      <td>{{x.workPercentage}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                  {% endif %}
+                </div>
+                <div>
+                  <center><h2>Total Working Hours</h2></center>
+                </div>
+                <div class="t">
+                  <table class="t1 text-center" id="table2">
+                    <tr>
+                      <th>Name</th>
+                      <th>Total Working Hours</th>
+                      <th>Punching Time</th>
+                    </tr>
+                    {% for name, time, punchingTime in total %}
+                    <tr>
+                      <td>{{name}}</td>
+                      <td>{{time}}</td>
+                      <td>{{punchingTime}}</td>
+                    </tr>
+                    {% endfor %}
+                  </table>
+                </div>
+                <div class="signature-parent">
+                  <div class="signatures">
+                    <div class="top-left">For CEO</div>
+                    <div class="bottom-right">Nikhil Deepak</div>
+                  </div>
+                  <div class="signatures">
+                    <div class="top-left">For {{dep}}-TL</div>
+                    <div class="bottom-right">{{tl}}</div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>
+  </div>
+    <div class="notfound">
+        <div class="nopage">
+            <h2>404</h2>
+            <h2>Not Found</h2>
+        </div>
+    </div>
+    <script src="../static/js/bootstrap.bundle.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/workdone.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

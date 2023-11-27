@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/pr.css">
+    <link rel="stylesheet" href="../static/css/forms.css">
+    <link rel="stylesheet" href="../static/css/customerdetails.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../static/images/favicon.ico' %}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="../static/js/customerdetails.js"></script>
+    <title>Adminconsole</title>
+</head>
+<body>
+   <div class="main-dis">
+    <div class="main-con ">
+        <div class="nav-con " onclick="navcon()">
+            <nav class="px-2">
+                <div class="container-fluid p-0 m-0">
+                    <div class="navlistlogo">
+                        <div class="left-nav-list">
+                            <div class="menu-icon">
+                                <img src="../static/images/nav-icon/small-icon.png" alt="small_Icon"
+                                    class="small-logo">
+                                <img src="../static/images/close.png" alt="menu_Icon" class="close-icons">
+                            </div>
+                        </div>
+                        <div class="right-nav-list">
+                            <img src="../static/images/nav-icon/main-log.svg" alt="small_Icon" class="main-logo">
+                        </div>
+                    </div>
+                    <div id="userprofilelist">
+                        <div class="user-profiles">
+                            <div class="user-img">
+                                {%if profile == "NULL"%}
+                                <img src="../static/images/user-profile.svg" alt="user-profile">
+                                {%else%}
+                                <img src="{{profile}}" alt="user-profile">
+                                {%endif%}
+                            </div>
+                            <div class="emply-id">
+                                <span>{{ name }}</span><br>
+                                <span>{% if dep == "WEB" %}
+                                    <p>Web Developer</p>
+                                    {% elif dep == "APP" %}
+                                    <p>App developer</p>
+                                    {% elif dep == "MEDIA" %}
+                                    <p>Graphic designer</p>
+                                    {% elif dep == "PR" %}
+                                    <p>PR</p>
+                                    {% elif dep == "RND" %}
+                                    <p>R&D</p>
+                                    {% else %}
+                                    <p>Admin</p>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <li class="user-visual">
+                            <div class="left-nav-list"> <img src="../static/images/menu.png" alt="menu_Icon"
+                                    class="menu-icons"></div>
+                            <div class="right-nav-list">
+                            
+                            </div>
+                        </li>
+                    </div>
+                    <ul id="nav-main-con">
+                        <li class="navlistmenu " onclick="location.href='/'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/dashboard.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Home</h5>
+                            </div>
+                        </li>
+                        {% if general %}
+                        <li class="navlistmenu " onclick="location.href='/leave_form'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/forms-icon.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Leave Form</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu" onclick="location.href='/late_form'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/late-icons.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Late Form</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu" onclick="location.href='/suggestion'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/suggestion.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Suggestion</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if approvalpage %}
+                        <li class="navlistmenu" onclick="location.href='/approval'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/approval.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Approval</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% if rnd %}
+                        <li class="navlistmenu " onclick="location.href='/inprocess'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/inprocess.svg" alt="inprocess_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>In Process</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu " onclick="location.href='/create'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/create-product.svg" alt="inprocess_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Create Product</h5>
+                            </div>
+                        </li>
+
+                        {% endif %}
+
+                        {% if account %}
+                        <li class="navlistmenu " onclick="location.href='/financial'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/financial-icon.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Financial</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if createlead %}
+                        <li class="navlistmenu " onclick="location.href='/create_lead'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/create_lead.svg" alt="create_lead">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Create Lead</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if customerdetails %}
+                        <li class="navlistmenu navlistmenu-active" onclick="location.href='/customer_details'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/customer-icon.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Customer Details</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if quotation %}
+                        <li class="navlistmenu" onclick="location.href='/quotation'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/invoice.png" alt="quottaion_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Quotation</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if inventory %}
+                        <li class="navlistmenu" onclick="location.href='/inventorymanagement'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/invoice.png" alt="inventory_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Inventory</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if createstaff %}
+                        <li class="navlistmenu " onclick="location.href='/createstaff'">
+                            <div class="left-nav-list">
+                               <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/create-staff.svg" alt="createstaff_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Create Staff</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if viewworkmanager %}
+                        <li class="navlistmenu" onclick="location.href='/viewworkmanager'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/viewworkmanager.svg"
+                                        alt="createstaff_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>View Workmanager</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if viewsuggestion %}
+                        <li class="navlistmenu" onclick="location.href='/viewsuggestion'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/viewsuggestion.svg" alt="userdata_Icon">
+                                    <span class="suggestionpop">{{suggestionNotification}}</span>
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>View Suggestion</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if userdata %}
+                        <li class="navlistmenu" onclick="location.href='/userdata'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/userdata.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>User Data</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {%if dep == "ADMIN"%}
+                        <li class="navlistmenu" onclick="location.href='/staffaccess'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/userdata.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Staff Access</h5>
+                            </div>
+                        </li>
+                        {%endif%}
+
+                        {% if prdashboard %}
+                        <li class="navlistmenu " onclick="location.href='/prdashboard'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/prdashboard.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>PR Dashboard</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+
+                        {% if installationadd %}
+                        <li class="navlistmenu " onclick="location.href='/installationadd'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/prdashboard.svg" alt="userdata_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Installation Add</h5>
+                            </div>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    <div class="logout" onclick="location.href='/logout/'">
+                        <li class="navlistmenu">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/logout-icon.svg" alt="dashboard_Icon"
+                                        class="logout-icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Logout</h5>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="right-con " id="rightCon" onclick="rightcon()">
+            <div class="container-fluid">
+                <div class="row my-4 align-items-center">
+                    <div class="col-md-7">
+                        <form action="">
+                            <div class="customer-searchbar">
+                                <div class="cust-inp">
+                                    <input type="text" placeholder="Search Customer" id="myInput3"
+                                        onkeyup="searchFunction()" autofocus="autofocus">
+                                </div>
+                                <div class="searchBtn" type="submit">
+                                    <img src="../static/images/search-icon.svg" alt="search-icon"
+                                        class="img-fluid">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="total-customer">Total Customer: <span>{{totalCount}}</span></h6>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="dropdown">
+                            <button class="sortbtn  dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Sort <img src="../static/images/sort-icon.svg" alt="sort-icon">
+                            </button>
+                            <input type="button" value="sort" onclick="srt1()" class="sortbtn" />
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li class="dropdown-item from-date">
+                                    <label for="from-date">From</label><br>
+                                    <input type="date" name="date" id="from-date" />
+                                </li>
+                                <li class="dropdown-item to-date">
+                                    <label for="to-date">To</label><br>
+                                    <input type="date" name="date" id="to-date" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="top-customer-btns">
+                    <div class="row" id="custom-parent">
+                        <div class="col-md-2">
+                            <label for="fupId" class="custom-btn custom-active following-up">
+                                <div class="first-custm-text">
+                                    <h6>Following Up</h6>
+                                    <h4>{{followUpCount}}</h4>
+                                    <input name="state" id="fupId" hidden value="Following Up" type="checkbox" 
+                                    onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/following-icon.svg" alt="following-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="onwordsId" class="custom-btn onwords-btn">
+                                <div class="first-custm-text">
+                                    <h6>onwords</h6>
+                                    <h4>{{onwordsCount}}</h4>
+                                    <input type="checkbox" name="state" hidden id="onwordsId" value="ONWORDS" 
+                                                        onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/onwords-custom-icon.svg" alt="onwords-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="newleadsId" class="custom-btn cust-lead">
+                                <div class="first-custm-text">
+                                    <h6>New Leads</h6>
+                                    <h4>{{newleadscount}}</h4>
+                                    <input type="checkbox" hidden name="state" id="newleadsId" value="New leads" 
+                                                        onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/cust-new-lead.svg" alt="onwords-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="dId" class="custom-btn cust-delay">
+                                <div class="first-custm-text">
+                                    <h6>Delayed</h6>
+                                    <h4>{{delayedCount}}</h4> 
+                                    <input type="checkbox" hidden name="state" id="dId" value="Delayed" 
+                                                        onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/cust-delay-icon.svg" alt="onwords-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="aId" class="custom-btn cust-adv">
+                                <div class="first-custm-text">
+                                    <h6>Advanced</h6>
+                                    <h4>{{advancedCount}}</h4>
+                                    <input type="checkbox" hidden name="state" id="aId" value="Advanced" 
+                                                        onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/cust-advance.svg" alt="Advanced-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="prId" class="custom-btn cust-product">
+                                <div class="first-custm-text">
+                                    <h6>Product</h6>
+                                    <h4>{{productCount}}</h4>
+                                    <input type="checkbox" hidden name="state" id="prId" value="Product" 
+                                                        onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/product-icon.svg" alt="Product-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-2">
+                            <label for="b2bId" class="custom-btn cust-b2b">
+                                <div class="first-custm-text">
+                                    <h6>B2B</h6>
+                                    <h4>{{b2bCount}}</h4>
+                                    <input type="checkbox" hidden name="state" id="b2bId" value="B2B" 
+                                                        onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/cust-b2b.svg" alt="b2b-icon" class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="ucId" class="custom-btn  under-construction">
+                                <div class="first-custm-text">
+                                    <h6>Under Construc</h6>
+                                    <h4>{{ucCount}}</h4>
+                                    <input type="checkbox" hidden name="state" id="ucId" 
+                                                        value="Under Construction" onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/cust-under-construction.svg" alt="b2b-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="icId" class="custom-btn cust-instal">
+                                <div class="first-custm-text">
+                                    <h6>Installation Done</h6>
+                                    <h4>{{installationCompletedCount}}</h4>
+                                    <input type="checkbox" hidden name="state" id="icId" 
+                                                        value="Installation Completed" onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/instalation-compl.svg" alt="b2b-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="htleadId" class="custom-btn cust-interst">
+                                <div class="first-custm-text">
+                                    <h6>Interested</h6>
+                                    <h4>{{interestedCount}}</h4>
+                                    <input type="checkbox" hidden name="state" id="htleadId" 
+                                                    value="Hot lead" onclick="sortByState()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/cust-intrested.svg" alt="b2b-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="othersId" class="custom-btn cust-other">
+                                <div class="first-custm-text">
+                                    <h6>Others</h6>
+                                    <h4>{{othersCount}}</h4>
+                                    <input type="checkbox" hidden name="others" id="othersId" 
+                                                        onclick="othersFunction()" />
+                                </div>
+                                <div class="second-custom-img">
+                                    <img src="../static/images/cust-others.svg" alt="others-icon"
+                                        class="img-fluid">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="two-btn-cust">
+                                <div class="pr-staff btn btn-outline-primary m-1 w-100 dropdown btn-staff">
+                                    <button class="  dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        PR Staffs
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li> <span class="dropdown-item">
+                                            <label for="anithaId">
+                                                Anithaa
+                                                <span id="u-anitha"></span>
+                                            </label>
+                                            <input type="checkbox" name="staff-name" id="anithaId"
+                                                value="Anitha" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdown-items">
+                                            <label for="jeevaId">
+                                                Jeeva
+                                                <span id="u-jeeva"></span>
+                                            </label>
+                                            <input type="checkbox" name="staff-name" id="jeevaId"
+                                                value="Jeeva" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdown-items">
+                                            <label for="gId">Gowtham <span
+                                                    id="u-gowtham"></span></label>
+                                            <input type="checkbox" name="staff-name" id="gId"
+                                                value="Gowtham" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="abdulId">Abdul Abbas <span
+                                                    id="u-abdul"></span></label>
+                                            <input type="checkbox" name="staff-name" id="abdulId"
+                                                value="Abdul Abbas" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="arunId">Arun Kumar <span
+                                                    id="u-arun"></span></label>
+                                            <input type="checkbox" name="staff-name" id="arunId"
+                                                value="Arun Kumar" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="vasanthId">Vasanth Kumar <span
+                                                    id="u-vasanth"></span></label>
+                                            <input type="checkbox" name="staff-name" id="vasanthId"
+                                                value="Vasanth Kumar" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="pradeepId">Pradeep Kanth <span
+                                                    id="u-pradeep"></span></label>
+                                            <input type="checkbox" name="staff-name" id="pradeepId"
+                                                value="Pradeep Kanth" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="sakthiId">Sakthivel Nagaraj <span
+                                                    id="u-sakthi"></span></label>
+                                            <input type="checkbox" name="staff-name" id="sakthiId"
+                                                value="Sakthivel Nagaraj" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="radhaId">Radhakrishnan <span
+                                                    id="u-radha"></span></label>
+                                            <input type="checkbox" name="staff-name" id="radhaId"
+                                                value="Radhakrishnan" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="onwordsIdd">Onwords <span
+                                                    id="u-onwords"></span></label>
+                                            <input type="checkbox" name="staff-name" id="onwordsIdd"
+                                                value="Onwords" onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="iyyappanIdd">Iyyappan K<span
+                                                    id="u-iyyappan"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="iyyappanIdd" value="Iyyappan K"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="abdulkareemIdd">Abdul Kareem<span
+                                                    id="u-abdulkareem"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="abdulkareemIdd" value="Abdul Kareem"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="ashikaboobackerIdd">Ashik Aboobacker<span
+                                                    id="u-ashikaboobacker"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="ashikaboobackerIdd" value="Ashik Aboobacker"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="harshiniuIdd">Harshini U<span
+                                                    id="u-harshiniu"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="harshiniuIdd" value="Harshini U"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="aishwaryakIdd">Aishwarya K<span
+                                                    id="u-aishwaryak"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="aishwaryakIdd" value="Aishwarya K"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="karthikamIdd">Karthika M<span
+                                                    id="u-karthikam"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="karthikamIdd" value="Karthika M"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="sanjethtIdd">Sanjeth T<span
+                                                    id="u-sanjetht"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="sanjethtIdd" value="Sanjeth T"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="gokulnathnIdd">Gokulnath N<span
+                                                    id="u-gokulnathn"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="gokulnathnIdd" value="Gokulnath N"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="mohamedthouficIdd">Mohamed Thoufic<span
+                                                    id="u-mohamedthoufic"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="mohamedthouficIdd" value="Mohamed Thoufic"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="logeshpIdd">Logesh P<span
+                                                    id="u-logeshp"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="logeshpIdd" value="Logesh P"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="rajkannanbIdd">Rajkannan B<span
+                                                    id="u-rajkannanb"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="rajkannanbIdd" value="Rajkannan B"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="karthickrajaaIdd">Karthickraja A<span
+                                                    id="u-karthickrajaa"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="karthickrajaaIdd" value="Karthickraja A"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="pradeepkumarIdd">Pradeep kumar<span
+                                                    id="u-pradeepkumar"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="pradeepkumarIdd" value="Pradeep kumar"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="AnushaUnnikrishnanIdd">Anusha Unnikrishnan<span
+                                                    id="u-AnushaUnnikrishnan"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="AnushaUnnikrishnanIdd" value="Anusha Unnikrishnan"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="dropdpwn-items">
+                                            <label for="ArasiSIdd">Arasi S<span
+                                                    id="u-ArasiS"></span></label>
+                                            <input type="checkbox" name="staff-name"
+                                                id="ArasiSIdd" value="Arasi S"
+                                                onclick="sortByName()" />
+                                        </span>
+                                    </li>
+                                    </ul>
+
+                                </div>
+                                <div class="BlockDots btn btn-outline-info m-1 w-100 dropdown blockdot-drop">
+                                    <button class="  dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Blackdots
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li> <span class="dropdown-item">
+                                                <label for="anithaIdd">
+                                                    Anitha
+                                                    <span id="b-anitha"></span>
+                                                </label>
+                                                <input type="checkbox" name="bd-staff-name" id="anithaIdd"
+                                                    value="Anitha" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdown-items">
+                                                <label for="jeevaIdd">
+                                                    Jeeva
+                                                    <span id="b-jeeva"></span>
+                                                </label>
+                                                <input type="checkbox" name="bd-staff-name" id="jeevaIdd" value="Jeeva"
+                                                    onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdown-items">
+                                                <label for="gIdd">Gowtham <span id="b-gowtham"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="gIdd" value="Gowtham"
+                                                    onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="abdulIdd">Abdul Abbas <span id="b-abdul"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="abdulIdd"
+                                                    value="Abdul Abbas" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="arunIdd">Arun Kumar <span id="b-arun"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="arunIdd"
+                                                    value="Arun Kumar" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="vasanthIdd">Vasanth Kumar <span
+                                                        id="b-vasanth"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="vasanthIdd"
+                                                    value="Vasanth Kumar" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="pradeepIdd">Pradeep Kanth <span
+                                                        id="b-pradeep"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="pradeepIdd"
+                                                    value="Pradeep Kanth" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="sakthiIdd">Sakthivel Nagaraj <span
+                                                        id="b-sakthi"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="sakthiIdd"
+                                                    value="Sakthivel Nagaraj" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="radhaIdd">Radhakrishnan <span id="b-radha"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="radhaIdd"
+                                                    value="Radhakrishnan" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="onwordsIddd">Onwords <span id="b-onwords"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="onwordsIddd"
+                                                    value="Onwords" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="iyyappanIddd">Iyyappan K<span
+                                                        id="b-iyyappan"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="iyyappanIddd"
+                                                    value="Iyyappan K" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="abdulkareemIddd">Abdul Kareem<span
+                                                        id="b-abdulkareem"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="abdulkareemIddd"
+                                                    value="Abdul Kareem" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="ashikaboobackerIddd">Ashik Aboobacker<span
+                                                        id="b-ashikaboobacker"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="ashikaboobackerIddd"
+                                                    value="Ashik Aboobacker" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="harshiniuIddd">Harshini U<span
+                                                        id="b-harshiniu"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="harshiniuIddd"
+                                                    value="Harshini U" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="aishwaryakIddd">Aishwarya K<span
+                                                        id="b-aishwaryak"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="aishwaryakIddd"
+                                                    value="Aishwarya K" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="karthikamIddd">Karthika M<span
+                                                        id="b-karthikam"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="karthikamIddd"
+                                                    value="Karthika M" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="sanjethtIddd">Sanjeth T<span id="b-sanjetht"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="sanjethtIddd"
+                                                    value="Sanjeth T" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="gokulnathnIddd">Gokulnath N<span
+                                                        id="b-gokulnathn"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="gokulnathnIddd"
+                                                    value="Gokulnath N" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="mohamedthouficIddd">Mohamed Thoufic<span
+                                                        id="b-mohamedthoufic"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="mohamedthouficIddd"
+                                                    value="Mohamed Thoufic" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="logeshpIddd">Logesh P<span id="b-logeshp"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="logeshpIddd"
+                                                    value="Logesh P" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="rajkannanbIddd">Rajkannan B<span
+                                                        id="b-rajkannanb"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="rajkannanbIddd"
+                                                    value="Rajkannan B" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="karthickrajaaIddd">Karthickraja A<span
+                                                        id="b-karthickrajaa"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="karthickrajaaIddd"
+                                                    value="Karthickraja A" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="pradeepkumarIddd">Pradeep kumar<span
+                                                        id="b-pradeepkumar"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="pradeepkumarIddd"
+                                                    value="Pradeep kumar" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="AnushaUnnikrishnanIddd">Anusha Unnikrishnan<span
+                                                        id="b-AnushaUnnikrishnan"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="AnushaUnnikrishnanIddd"
+                                                    value="Anusha Unnikrishnan" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="dropdpwn-items">
+                                                <label for="ArasiSIddd">Arasi S<span id="b-ArasiS"></span></label>
+                                                <input type="checkbox" name="bd-staff-name" id="ArasiSIddd"
+                                                    value="Arasi S" onclick="getBDbyName()" />
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <table class="table mt-4" id="myTable">
+                        <thead>
+                            <tr class="leave-table-head text-align-start">
+                                <th>S.No</th>
+                                <th>Name</th>
+                                <th>Number</th>
+                                <th>Status</th>
+                                <th>Note</th>
+                                <th>Notes Update</th>
+                                <th>Incharge</th>
+                                <th>Create Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for name, phone, state, note, date, inc, created in allData %}
+                            <form method="post" action="/leadinfo/" id="leadDetails">
+                                <tr class="mt-3 text-center">
+                                    <td hidden>{{date}}</td>
+                                    <td></td>
+                                    <td>
+                                        <button value="{{name}}" class="cust-name" style=" background: none;
+                                    outline: none;
+                                    border: none;">{{name}}</button>
+                                        <span id="fs" style="display: inline; margin-right: 0;width: 10%; "></span>
+                                    </td>
+                                    <td>{{phone}}</td>
+                                    <input type="hidden" name="numb" id="numb" value="{{phone}}" />
+                                    <td class="stt">{{state}}</td>
+                                    <td>{{note}}</td>
+                                    <td>{{date}}</td>
+                                    <td class="inchrge">{{inc}}</td>
+                                    <td>{{created}}</td>
+                                </tr>
+                            </form>
+                            {% endfor %}
+                        </tbody>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+    <div class="notfound">
+        <div class="nopage">
+            <h2>404</h2>
+            <h2>Not Found</h2>
+        </div>
+    </div>
+    <script src="../static/js/bootstrap.bundle.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/customerdetails.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script>
+        var headers =document.getElementById('custom-parent')
+        var btnscust = headers.getElementsByClassName("custom-btn");
+        for (var i = 0; i < btnscust.length; i++) {
+            btnscust[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("custom-active");
+                current[0].className = current[0].className.replace(" custom-active", "");
+                this.className += " custom-active";
+    });
+}
+    </script>
+</body>
+</html>

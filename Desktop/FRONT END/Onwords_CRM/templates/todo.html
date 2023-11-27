@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/forms.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <title>adminconsole</title>
+</head>
+<body>
+    <div class="main-con ">
+        <div class="nav-con " onclick="navcon()">
+            <nav class="px-2">
+                <div class="container-fluid p-0 m-0">
+                    <div class="navlistlogo">
+                        <div class="left-nav-list">
+                            <div class="menu-icon">
+                                <img src="../static/images/nav-icon/small-icon.png" alt="small_Icon"
+                                    class="small-logo">
+                                <img src="../static/images/close.png" alt="menu_Icon" class="close-icons">
+                            </div>
+                        </div>
+                        <div class="right-nav-list">
+                            <img src="../static/images/nav-icon/main-log.svg" alt="small_Icon" class="main-logo">
+                        </div>
+                    </div>
+                    <div class="user-profile">
+                        <li class="user-visual">
+                            <div class="left-nav-list"> <img src="../static/images/menu.png" alt="menu_Icon"
+                                    class="menu-icons"></div>
+                            <div class="right-nav-list">
+                                <div class="user-profiles">
+                                    <div class="user-img">
+                                        {%if profile == "NULL"%}
+                                        <img src="../static/images/user-profile.svg" alt="user-profile">
+                                        {%else%}
+                                        <img src="{{profile}}" alt="user-profile">
+                                        {%endif%}
+                                    </div>
+                                    <div class="emply-id">
+                                        <span>{{name}}</span><br>
+                                        <span>{% if dep == "WEB" %}
+                                            <p>Web Developer</p>
+                                            {% elif dep == "APP" %}
+                                            <p>App developer</p>
+                                            {% elif dep == "MEDIA" %}
+                                            <p>Graphic designer</p>
+                                            {% elif dep == "PR" %}
+                                            <p>PR</p>
+                                            {% elif dep == "RND" %}
+                                            <p>R&D</p>
+                                            {% else %}
+                                            <p>Admin</p>
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                    <ul id="nav-main-con">
+                        <li class="navlistmenu" onclick="location.href='/ithome'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/dashboard.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>dashboard</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu " onclick="location.href='/leave_form'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/forms-icon.svg" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Leave Form</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu" onclick="location.href='/late_form'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/late-icons.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Late Form</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu" onclick="location.href='/suggestion'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/suggestion.png" alt="dashboard_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Suggestion</h5>
+                            </div>
+                        </li>
+                        <li class="navlistmenu navlistmenu-active" onclick="location.href='/suggestion'">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/todo.svg" alt="todo_Icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Todo</h5>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="logout" onclick="location.href=''">
+                        <li class="navlistmenu">
+                            <div class="left-nav-list">
+                                <div class="menu-icon">
+                                    <img src="../static/images/nav-icon/logout-icon.svg" alt="dashboard_Icon"
+                                        class="logout-icon">
+                                </div>
+                            </div>
+                            <div class="right-nav-list">
+                                <h5>Logout</h5>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="right-con " id="rightCon" onclick="rightcon()">
+            <div class="container">
+                <div class="">
+                    <center><h2>Todo</h2></center>
+                    <div class="form-inp-con">
+                        <input type="text" id="task" placeholder="Add a new task" required>
+                    </div>
+                     <center>   <button class="primary-button" id="add">Add</button></center>
+                    <ul id="taskList">
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const taskInput = document.getElementById('task');
+            const addButton = document.getElementById('add');
+            const taskList = document.getElementById('taskList');
+
+            addButton.addEventListener('click', function () {
+                const taskText = taskInput.value.trim();
+                if (taskText) {
+                    addTask(taskText);
+                    taskInput.value = '';
+                }
+            });
+
+            taskInput.addEventListener('keyup', function (event) {
+                if (event.key === 'Enter') {
+                    addButton.click();
+                }
+            });
+
+            taskList.addEventListener('click', function (event) {
+                if (event.target.tagName === 'LI') {
+                    event.target.classList.toggle('completed');
+                }
+            });
+
+            function addTask(text) {
+                const taskItem = document.createElement('li');
+                taskItem.textContent = text;
+                taskItem.classList.add('task-li')
+                taskList.appendChild(taskItem);
+            }
+        });
+    </script>
+    <script src="../static/js/bootstrap.bundle.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
